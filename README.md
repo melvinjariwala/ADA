@@ -1,1 +1,1 @@
-# ADA
+# Respository for college assignments for ADA(Analysis and Design of Algorithms) subject.
