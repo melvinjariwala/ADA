@@ -31,6 +31,7 @@ void main(){
     scanf("%d",&n);//input of size of array
     int a[n];
 
+    printf("Enter elements of array : \n");
     input_array(n,a);//input of array
 
     printf("Before Sorting : \n");
