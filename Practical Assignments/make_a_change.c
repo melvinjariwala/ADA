@@ -1,4 +1,5 @@
-	#include <stdio.h>
+#include <stdio.h>
+#include<limits.h>
 void input_coins(int n, int* a){
 	for(int i = 0; i < n; i++){
 		scanf("%d", &a[i]);
@@ -12,19 +13,43 @@ void print_array(int n, int* a){
 	printf("\n");
 }
 
-int make_a_change(int n, int a, int diff){
-	int A[n+1][diff+1];
-	for (int i = 0; i < n+1; i++){
-		for(int j = 0; j < n; j++){
+void make_a_change(int n, int* coins, int diff){
+	
+	int table[n+1][diff+1];
+	
+	for (int i = 1; i <= n; i++){
+		table[i][0] = 0;
+	}
+	printf("first\n");
+	for (int i = 1; i <= diff; i++){
+		table[0][i] = INT_MAX;
+	}
+	printf("second\n");
+	for (int i = 1; i <= n; i++){
+		for(int j = 1; j <= diff; j++){
 			
+			if (j<coins[i-1]){
+				table[i][j] = table[i-1][j];
+			}
+			else {
+				int v1 = table[i-1][j];
+				int v2 = 1 + table[i][j-coins[i-1]];
+				table[i][j]=(v1<v2)?v1:v2;
+			}
 		}
 	}
 	
+	for(int i = 0; i <= n; i++){
+		for(int j = 0; j <= diff; j++){
+			printf("%d ", table[i][j]);
+		}
+		printf("\n");
+	}
 
 }
 
 int main(int argc, char **argv){
-	int unique_coins, total, paid;
+	int unique_coins, sum;
 
 	printf("Enter the number of unique coins : ");
 	scanf("%d", &unique_coins);
@@ -33,17 +58,12 @@ int main(int argc, char **argv){
 	set_of_coins[0]=0;
 
 	printf("Enter the coins every value availabe : \n");
-	input_coins(unique_coins, &set_of_coins[0]);
+	input_coins(unique_coins, set_of_coins);
 
-	print_array(unique_coins,&set_of_coins[0]);
+	print_array(unique_coins,set_of_coins);
 
-	printf("Amount to be paid : ");
-	scanf("%d", &total);
-
-	printf("Amount paid : ");
-	scanf("%d", &paid);
-
-	if(paid>total){
-		int change = make_a_change(unique_coins, &set_of_coins[0], (paid-total));
-	}
+	printf("Total amount to be paid : ");
+	scanf("%d", &sum);
+	
+	make_a_change(unique_coins, set_of_coins, sum);
 }
