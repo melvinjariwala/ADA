@@ -13,18 +13,16 @@ void print_array(int n, int* a){
 	printf("\n");
 }
 
-void make_a_change(int n, int* coins, int diff){
+int make_a_change(int n, int* coins, int diff){
 	
 	int table[n+1][diff+1];
 	
 	for (int i = 1; i <= n; i++){
 		table[i][0] = 0;
 	}
-	printf("first\n");
 	for (int i = 1; i <= diff; i++){
 		table[0][i] = INT_MAX;
 	}
-	printf("second\n");
 	for (int i = 1; i <= n; i++){
 		for(int j = 1; j <= diff; j++){
 			
@@ -38,14 +36,7 @@ void make_a_change(int n, int* coins, int diff){
 			}
 		}
 	}
-	
-	for(int i = 0; i <= n; i++){
-		for(int j = 0; j <= diff; j++){
-			printf("%d ", table[i][j]);
-		}
-		printf("\n");
-	}
-
+	return table[n][diff];
 }
 
 int main(int argc, char **argv){
@@ -65,5 +56,5 @@ int main(int argc, char **argv){
 	printf("Total amount to be paid : ");
 	scanf("%d", &sum);
 	
-	make_a_change(unique_coins, set_of_coins, sum);
+	printf("Total no. of coins : %d\n",make_a_change(unique_coins, set_of_coins, sum));
 }
