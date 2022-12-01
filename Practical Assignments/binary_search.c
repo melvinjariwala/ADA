@@ -1,11 +1,11 @@
-	#include <stdio.h>
-	void inputArray(int n, int a[]){
+#include <stdio.h>
+void inputArray(int n, int a[]){
 	for(int i=0; i<n; i++){
 		scanf("%d",&a[i]);
 	}
-	}
+}
 
-	void insertion_sort(int n, int a[]){
+void insertion_sort(int n, int a[]){
 	for (int i = 1; i < n; i++){
 		int key = a[i], j=i-1;
 		while (j>=0 && a[j]>key){
@@ -14,9 +14,9 @@
 		}
 		a[j+1] = key;
 	}
-	}
+}
 
-	int binary_search(int n, int a[], int key){
+int binary_search(int n, int a[], int key){
 	int low=0;
 	int high=n-1;
 
@@ -26,7 +26,7 @@
 	else if(key==a[high]){
 		return high;
 	}
-	
+
 	while (high>low){
 		int mid = low+(high-low)/2;
 		if(a[mid]==key){
@@ -40,16 +40,16 @@
 		}
 	}
 	return 0;
-	}
+}
 
-	void print_array(int n, int a[]){
+void print_array(int n, int a[]){
 	for (int i = 0; i < n; i++){
 		printf("%d ",a[i]);
 	}
 	printf("\n");
-	}
+}
 
-	int main(int argc, char **argv){
+int main(int argc, char **argv){
 	int size;
 	printf("Enter the size of array : ");//input of size of array
 	scanf("%d", &size);
@@ -70,4 +70,4 @@
 	int pos=binary_search(size,a,key);//returns index of array if element found else return 0
 	pos?printf("Element found at index : %d\n", pos):printf("Element not found!\n");
 	printf("(According to 0 indexing)");
-	}
+}
