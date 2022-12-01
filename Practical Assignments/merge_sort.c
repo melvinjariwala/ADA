@@ -73,8 +73,9 @@ void printArray(int A[], int size){
         printf("%d ", A[i]);
     printf("\n");
 }
- 
- void input_array(int n, int arr[]){
+
+// function to take input for array
+void input_array(int n, int arr[]){
     for (int i = 0; i < n; i++){
         scanf("%d",&arr[i]);
     }
